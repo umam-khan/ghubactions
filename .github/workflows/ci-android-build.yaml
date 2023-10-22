@@ -30,11 +30,12 @@ jobs:
       - name: Configure Git
         run: |
           git config --local user.email "umam.khan@outlook.com"
-          git config --local user.name "Your Name"
+          git config --local user.name "umam khan"
       - name: Commit and Push Changes
         run: |
           git add testBuilds/*
           git commit -m "Add debug APK"
-          git push https://github.com/umam-khan/ghubactions HEAD:main
+          export GITHUB_TOKEN=${{ secrets.PAT_TOKEN }}
+          git push https://$GITHUB_TOKEN@github.com/umam-khan/ghubactions.git HEAD:main
         env:
           GITHUB_TOKEN: '${{ secrets.PAT_TOKEN }}'
